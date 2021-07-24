@@ -5,15 +5,16 @@ import AuthProvider from 'providers/Auth';
 import HomePage from 'pages/Home';
 import LoginPage from 'pages/Login';
 import NotFound from 'pages/NotFound';
-import SecretPage from 'pages/Secret';
-import Private from 'components/Private';
-import Fortune from 'components/Fortune';
 import Layout from 'components/Layout';
+import NavBar from 'components/NavBar';
+import { GlobalStyle } from 'global.styled';
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
+        <GlobalStyle />
+        <NavBar />
         <Layout>
           <Switch>
             <Route exact path="/">
@@ -22,14 +23,10 @@ function App() {
             <Route exact path="/login">
               <LoginPage />
             </Route>
-            <Private exact path="/secret">
-              <SecretPage />
-            </Private>
             <Route path="*">
               <NotFound />
             </Route>
           </Switch>
-          <Fortune />
         </Layout>
       </AuthProvider>
     </BrowserRouter>
