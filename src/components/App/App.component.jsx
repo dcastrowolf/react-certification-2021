@@ -7,14 +7,19 @@ import LoginPage from 'pages/Login';
 import NotFound from 'pages/NotFound';
 import Layout from 'components/Layout';
 import NavBar from 'components/NavBar';
+import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'global.styled';
+import { useDarkMode } from 'hooks/useDarkMode';
 
 function App() {
+  const { theme, toggleTheme } = useDarkMode();
   return (
     <BrowserRouter>
       <AuthProvider>
-        <GlobalStyle />
-        <NavBar />
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+        </ThemeProvider>
+        <NavBar theme={theme.title} toggleTheme={toggleTheme} />
         <Layout>
           <Switch>
             <Route exact path="/">

@@ -1,10 +1,13 @@
+import CardList from 'components/CardList/CardList.component';
 import React from 'react';
+import { HomeContainer } from './HomeElements.styled';
 
 function HomePage() {
   return (
-    <section>
-      <h1>Home view</h1>
-    </section>
+    <HomeContainer>
+      <h1>Welcome to the Challenge!</h1>
+      <CardList />
+    </HomeContainer>
   );
 }
 

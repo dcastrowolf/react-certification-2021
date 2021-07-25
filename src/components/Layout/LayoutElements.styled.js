@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 
 export const Main = styled.main`
-  width: 100vw;
-  height: 100vh;
+  min-height: calc(100vh - var(--navbar-height));
   max-height: 100%;
-  padding: calc(var(--navbar-height) + 1.25rem) 2.5rem 2.5rem 2.5rem;
+  margin: var(--navbar-height) 0 0 0;
+  background-color: transparent;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: row;
 `;
