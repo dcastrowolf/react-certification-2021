@@ -4,7 +4,7 @@ import { SearchContainer, SearchInput } from './SearchBoxElements.styled';
 function SearchBox() {
   return (
     <SearchContainer>
-      <SearchInput placeholder="Search" />
+      <SearchInput placeholder="Search" id="SearchBox" type="text" name="SearchBox" />
     </SearchContainer>
   );
 }
