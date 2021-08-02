@@ -1,10 +1,21 @@
 import React from 'react';
-import { SearchContainer, SearchInput } from './SearchBoxElements.styled';
+import {
+  SearchButton,
+  SearchContainer,
+  SearchForm,
+  SearchIcon,
+  SearchInput,
+} from './SearchBoxElements.styled';
 
 function SearchBox() {
   return (
     <SearchContainer>
-      <SearchInput placeholder="Search" id="SearchBox" type="text" name="SearchBox" />
+      <SearchForm>
+        <SearchInput placeholder="Search" id="SearchBox" type="text" name="SearchBox" />
+        <SearchButton type="submit">
+          <SearchIcon />
+        </SearchButton>
+      </SearchForm>
     </SearchContainer>
   );
 }

@@ -7,6 +7,7 @@ export const GlobalStyle = createGlobalStyle`
         --icon-width-sq: 40px;
         --main-background-color: ${({ theme }) => theme.background.primaryColor};
         --secondary-background-color: ${({ theme }) => theme.background.secondaryColor};
+        --tertiary-color: ${({ theme }) => theme.background.tertiaryColor};
         --main-font-color: ${({ theme }) => theme.fonts.primaryColor};
         --secondary-font-color: ${({ theme }) => theme.fonts.secondaryColor};
         --searchbox-background-color: ${({ theme }) => theme.searchBox.backgroundColor};

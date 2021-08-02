@@ -10,9 +10,14 @@ import NavBar from 'components/NavBar';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'global.styled';
 import { useDarkMode } from 'hooks/useDarkMode';
+import { useGapi } from 'hooks/youtube/useGapi';
 
 function App() {
   const { theme, toggleTheme } = useDarkMode();
+  const gapi = useGapi();
+  if (!gapi) {
+    return <>Loading...</>;
+  }
   return (
     <BrowserRouter>
       <AuthProvider>

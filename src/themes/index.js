@@ -8,6 +8,7 @@ export const lightTheme = {
   background: {
     primaryColor: '#E9E9E9',
     secondaryColor: '#F1F1F1',
+    tertiaryColor: '#181818',
   },
   fonts: {
     primaryColor: '#030303',
@@ -27,6 +28,7 @@ export const darkTheme = {
   background: {
     primaryColor: '#181818',
     secondaryColor: '#212121',
+    tertiaryColor: '#E9E9E9',
   },
   fonts: {
     primaryColor: '#FFF',
