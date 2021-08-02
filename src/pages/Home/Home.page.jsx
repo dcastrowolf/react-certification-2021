@@ -7,6 +7,7 @@ function HomePage() {
   const { videos, isLoading, fetchHomeVideos } = useYoutubeVideos();
   useEffect(() => {
     fetchHomeVideos();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <HomeContainer>

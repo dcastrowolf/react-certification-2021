@@ -12,7 +12,6 @@ export function useYoutubeVideos() {
   const [state, dispatch] = useReducer(youtubeVideosReducer, initialState);
 
   const fetchHomeVideos = async () => {
-    console.log(window);
     try {
       const {
         gapi: {
@@ -26,10 +25,7 @@ export function useYoutubeVideos() {
         maxResults: 20,
         regionCode: 'CO',
       });
-      // console.log('%cRESULT GAPI', 'color: gold; font-size: 14px; font-weight: bold;');
-      // console.log(result);
       const newPayload = { videos: result.items, nextPageToken: result.nextPageToken };
-      // console.log(newPayload);
       dispatch({ type: HOME_VIDEOS_SUCESS, payload: newPayload });
     } catch (error) {
       dispatch({ type: HOME_VIDEOS_FAIL });

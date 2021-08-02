@@ -1,3 +1,4 @@
+import { useSearchForm } from 'hooks/search/useSearchForm';
 import React from 'react';
 import {
   SearchButton,
@@ -8,10 +9,27 @@ import {
 } from './SearchBoxElements.styled';
 
 function SearchBox() {
+  const { setSearchTerm, goToResultPage } = useSearchForm({ initialValue: null });
+
+  const handleChange = (evt) => {
+    setSearchTerm(evt.target.value);
+  };
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    goToResultPage();
+  };
+
   return (
     <SearchContainer>
-      <SearchForm>
-        <SearchInput placeholder="Search" id="SearchBox" type="text" name="SearchBox" />
+      <SearchForm onSubmit={handleSubmit}>
+        <SearchInput
+          onChange={handleChange}
+          placeholder="Search"
+          id="SearchBox"
+          type="text"
+          name="SearchBox"
+        />
         <SearchButton type="submit">
           <SearchIcon />
         </SearchButton>

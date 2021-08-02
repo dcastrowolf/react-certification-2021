@@ -12,7 +12,8 @@ export const GlobalStyle = createGlobalStyle`
         --secondary-font-color: ${({ theme }) => theme.fonts.secondaryColor};
         --searchbox-background-color: ${({ theme }) => theme.searchBox.backgroundColor};
         --searchbox-text-color: ${({ theme }) => theme.searchBox.textColor};
-        --color-grey-1: ${({ theme }) => theme.colors.grey}
+        --color-grey-1: ${({ theme }) => theme.colors.grey};
+        --color-red-1: red;
     }
 
     html {

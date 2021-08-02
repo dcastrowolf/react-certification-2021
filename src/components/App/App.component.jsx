@@ -11,6 +11,8 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'global.styled';
 import { useDarkMode } from 'hooks/useDarkMode';
 import { useGapi } from 'hooks/youtube/useGapi';
+import VideoDetails from 'pages/VideoDetails';
+import Results from 'pages/Results';
 
 function App() {
   const { theme, toggleTheme } = useDarkMode();
@@ -32,6 +34,12 @@ function App() {
             </Route>
             <Route exact path="/login">
               <LoginPage />
+            </Route>
+            <Route path="/video/:id">
+              <VideoDetails />
+            </Route>
+            <Route exact path="/results">
+              <Results />
             </Route>
             <Route path="*">
               <NotFound />
