@@ -7,11 +7,17 @@ export const GlobalStyle = createGlobalStyle`
         --icon-width-sq: 40px;
         --main-background-color: ${({ theme }) => theme.background.primaryColor};
         --secondary-background-color: ${({ theme }) => theme.background.secondaryColor};
+        --tertiary-color: ${({ theme }) => theme.background.tertiaryColor};
         --main-font-color: ${({ theme }) => theme.fonts.primaryColor};
         --secondary-font-color: ${({ theme }) => theme.fonts.secondaryColor};
         --searchbox-background-color: ${({ theme }) => theme.searchBox.backgroundColor};
         --searchbox-text-color: ${({ theme }) => theme.searchBox.textColor};
-        --color-grey-1: ${({ theme }) => theme.colors.grey}
+        --color-grey-1: ${({ theme }) => theme.colors.grey};
+        --color-red-1: red;
+        --loader-dark: ${({ theme }) => theme.colors.loaderDark};
+        --loader-body: ${({ theme }) => theme.colors.loaderBody};
+        --loader-white: ${({ theme }) => theme.colors.loaderWhite};
+        --loader-tongue: ${({ theme }) => theme.colors.loaderTongue};
     }
 
     html {

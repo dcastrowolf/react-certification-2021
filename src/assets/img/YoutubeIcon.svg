@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="80"
+   height="60"
+   viewBox="0 0 21.166666 15.875"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   sodipodi:docname="YoutubeIcon.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.62269122"
+     inkscape:cx="-18.240584"
+     inkscape:cy="662.07986"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g841"
+       transform="matrix(0.54519545,0,0,0.52549878,-39.793341,-65.32482)">
+      <rect
+         style="fill:#d40000;stroke-width:0.197245;stroke-linecap:round;stroke-dashoffset:7.55667"
+         id="rect833"
+         width="38.823997"
+         height="30.209394"
+         x="72.989128"
+         y="124.31013"
+         ry="3.0479195" />
+      <path
+         sodipodi:type="star"
+         style="fill:#ffffff;stroke-width:0.2;stroke-linecap:round;stroke-dashoffset:7.55667"
+         id="path837"
+         sodipodi:sides="3"
+         sodipodi:cx="91.035461"
+         sodipodi:cy="137.29677"
+         sodipodi:r1="10.008077"
+         sodipodi:r2="5.0040383"
+         sodipodi:arg1="2.0748021"
+         sodipodi:arg2="3.1219996"
+         inkscape:flatsided="true"
+         inkscape:rounded="0"
+         inkscape:randomized="0"
+         d="m 86.20219,146.06039 -0.339613,-17.33117 15.179043,8.37147 z"
+         inkscape:transform-center-x="-2.4891115"
+         inkscape:transform-center-y="-0.014891928"
+         transform="rotate(1.2930907,-4.0313563,88.58634)" />
+    </g>
+  </g>
+</svg>
