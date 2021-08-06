@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useCallback, useReducer } from 'react';
 import {
   RESULTS_VIDEOS_FAIL,
   RESULTS_VIDEOS_REQUEST,
@@ -15,7 +15,7 @@ const initialState = {
 export function useYoutubeVideosByKeyword() {
   const [state, dispatch] = useReducer(youtubeVideosReducer, initialState);
 
-  const fetchVideosByKeyword = async ({ keyword }) => {
+  const fetchVideosByKeyword = useCallback(async ({ keyword }) => {
     try {
       const {
         gapi: {
@@ -28,13 +28,13 @@ export function useYoutubeVideosByKeyword() {
         maxResults: 25,
         q: keyword,
       });
-      console.log(result);
       const newPayload = { videos: result.items, nextPageToken: result.nextPageToken };
       dispatch({ type: RESULTS_VIDEOS_SUCESS, payload: newPayload });
     } catch (error) {
       dispatch({ type: RESULTS_VIDEOS_FAIL });
     }
-  };
+  }, []);
 
-  return { ...state, fetchVideosByKeyword };
+  const { videos, isLoading } = state;
+  return { videos, isLoading, fetchVideosByKeyword };
 }

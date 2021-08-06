@@ -1,25 +1,29 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import NavBar from './NavBar.component';
 
 describe('<NavBar /> component', () => {
-  let component;
   beforeEach(() => {
-    component = render(<NavBar />);
+    render(
+      <Router>
+        <NavBar />
+      </Router>
+    );
   });
 
   test('should contains wizeline title', () => {
-    const title = component.queryByText(/Wizeline YouTube \| Clone/i);
+    const title = screen.queryByText(/Wizelinetube/i);
     expect(title).toBeInTheDocument();
   });
 
   test('should contains search input', () => {
-    component.getByPlaceholderText(/search/i);
-    component.getByRole('textbox');
+    screen.getByPlaceholderText(/search/i);
+    screen.getByRole('textbox');
   });
 
   test('should contains dark mode text', () => {
-    const darkMode = component.queryByText(/Dark Mode/i);
+    const darkMode = screen.queryByText(/Dark Mode/i);
     expect(darkMode).toBeInTheDocument();
   });
 });

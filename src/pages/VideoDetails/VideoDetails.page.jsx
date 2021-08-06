@@ -1,3 +1,4 @@
+import Loader from 'components/Loader';
 import VideoCard from 'components/VideoCard';
 import { useSingleYoutubeVideo } from 'hooks/youtube/video/useSingleYoutubeVideo';
 import React, { useEffect } from 'react';
@@ -11,15 +12,16 @@ import {
 
 function VideoDetails() {
   const { id } = useParams();
-  const { relatedVideos, isLoading, getRelatedVideos } = useSingleYoutubeVideo(id);
+  const { relatedVideos, isLoading, getRelatedVideos } = useSingleYoutubeVideo();
 
   useEffect(() => {
-    getRelatedVideos();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+    if (id) {
+      getRelatedVideos({ videoId: id });
+    }
+  }, [getRelatedVideos, id]);
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <Loader />;
   }
 
   return (
@@ -28,7 +30,7 @@ function VideoDetails() {
         <VideoPlayer
           src={`https://www.youtube.com/embed/${id}`}
           frameBorder="0"
-          title="Enbed youtube Video"
+          title="Embedded youtube Video"
         />
       </VideoContent>
       <RelatedVideos>

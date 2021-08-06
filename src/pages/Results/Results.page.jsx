@@ -3,6 +3,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 import { useYoutubeVideosByKeyword } from 'hooks/youtube/videos/useYoutubeVideosByKeyword';
 import VideoCard from 'components/VideoCard';
+import Loader from 'components/Loader';
 import { ResultsWrapper } from './ResultsElements.styled';
 
 function Results() {
@@ -16,21 +17,17 @@ function Results() {
       history.push('/404');
     }
     fetchVideosByKeyword({ keyword: searchText });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [fetchVideosByKeyword, history, location.search]);
 
   if (isLoading) {
-    return (
-      <ResultsWrapper>
-        <h1>Loading...</h1>
-      </ResultsWrapper>
-    );
+    return <Loader />;
   }
   return (
     <ResultsWrapper>
       <h2>Results Page</h2>
       {videos.map((ytVideo) => {
-        return <VideoCard key={ytVideo.id.videoId} video={ytVideo} />;
+        console.log(ytVideo.id);
+        return <VideoCard key={`${JSON.stringify(ytVideo.id)}`} video={ytVideo} />;
       })}
     </ResultsWrapper>
   );

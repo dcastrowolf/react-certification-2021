@@ -14,6 +14,10 @@ export const GlobalStyle = createGlobalStyle`
         --searchbox-text-color: ${({ theme }) => theme.searchBox.textColor};
         --color-grey-1: ${({ theme }) => theme.colors.grey};
         --color-red-1: red;
+        --loader-dark: ${({ theme }) => theme.colors.loaderDark};
+        --loader-body: ${({ theme }) => theme.colors.loaderBody};
+        --loader-white: ${({ theme }) => theme.colors.loaderWhite};
+        --loader-tongue: ${({ theme }) => theme.colors.loaderTongue};
     }
 
     html {

@@ -17,6 +17,7 @@ export const VideoCardPicture = styled.img`
   display: block;
   flex-basis: 60%;
   max-width: 60%;
+  object-fit: contain;
 `;
 
 export const VideoCardText = styled.div`

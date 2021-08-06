@@ -14,7 +14,7 @@ export function youtubeVideosReducer(state, action) {
     case RESULTS_VIDEOS_SUCESS:
       return {
         ...state,
-        videos: [...state.videos, ...payload.videos],
+        videos: [...payload.videos],
         nextPageToken: payload.nextPageToken,
         isLoading: false,
       };

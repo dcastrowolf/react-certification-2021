@@ -20,6 +20,10 @@ export const lightTheme = {
   },
   colors: {
     grey: '#AAA',
+    loaderDark: '#2a333b',
+    loaderBody: '#00ff98',
+    loaderWhite: '#e9ebeb',
+    loaderTongue: '#ff4081',
   },
 };
 
@@ -40,5 +44,9 @@ export const darkTheme = {
   },
   colors: {
     grey: '#CCC',
+    loaderDark: '#2a333b',
+    loaderBody: '#00ff98',
+    loaderWhite: '#e9ebeb',
+    loaderTongue: '#ff4081',
   },
 };

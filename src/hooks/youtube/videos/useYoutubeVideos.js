@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useCallback, useReducer } from 'react';
 import { HOME_VIDEOS_FAIL, HOME_VIDEOS_REQUEST, HOME_VIDEOS_SUCESS } from './actionTypes';
 import { youtubeVideosReducer } from './youtubeVideosReducer';
 
@@ -11,7 +11,7 @@ const initialState = {
 export function useYoutubeVideos() {
   const [state, dispatch] = useReducer(youtubeVideosReducer, initialState);
 
-  const fetchHomeVideos = async () => {
+  const fetchHomeVideos = useCallback(async () => {
     try {
       const {
         gapi: {
@@ -30,7 +30,7 @@ export function useYoutubeVideos() {
     } catch (error) {
       dispatch({ type: HOME_VIDEOS_FAIL });
     }
-  };
+  }, []);
 
   return { ...state, fetchHomeVideos };
 }
