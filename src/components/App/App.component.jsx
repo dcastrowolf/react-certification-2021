@@ -9,14 +9,14 @@ import Layout from 'components/Layout';
 import NavBar from 'components/NavBar';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'global.styled';
-import { useDarkMode } from 'hooks/useDarkMode';
 import { useGapi } from 'hooks/youtube/useGapi';
 import VideoDetails from 'pages/VideoDetails';
 import Results from 'pages/Results';
 import Loader from 'components/Loader';
+import { useToggleTheme } from 'providers/ToggleTheme';
 
 function App() {
-  const { theme, toggleTheme } = useDarkMode();
+  const { theme } = useToggleTheme();
   const gapi = useGapi();
   if (!gapi) {
     return (
@@ -31,7 +31,7 @@ function App() {
       <AuthProvider>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
-          <NavBar theme={theme.title} toggleTheme={toggleTheme} />
+          <NavBar />
           <Layout>
             <Switch>
               <Route exact path="/">

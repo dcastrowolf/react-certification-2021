@@ -6,7 +6,7 @@ import React from 'react';
 import Logo from 'assets/img/YoutubeIcon.svg';
 import { Nav, NavLogo } from './NavBarElements.styled';
 
-export default function NavBar({ theme, toggleTheme }) {
+export default function NavBar() {
   return (
     <Nav>
       <NavLogo to="/">
@@ -15,7 +15,7 @@ export default function NavBar({ theme, toggleTheme }) {
       </NavLogo>
       <SearchBox />
       <IconsContainer>
-        <SwitchTheme theme={theme} toggleTheme={toggleTheme} />
+        <SwitchTheme />
         <Avatar />
       </IconsContainer>
     </Nav>

@@ -1,1 +1,1 @@
-export { default } from './SwtchTheme.component';
+export { default } from './SwitchTheme.component';

@@ -1,11 +1,13 @@
 import { THEMES } from 'themes';
 import React from 'react';
+import { useToggleTheme } from 'providers/ToggleTheme';
 import { Moon, Sun, SwicthContainer } from './SwitchThemeElements.styled';
 
-function SwtchTheme({ theme, toggleTheme }) {
+function SwtchTheme() {
+  const { theme, toggleTheme } = useToggleTheme();
   return (
     <SwicthContainer onClick={toggleTheme}>
-      {theme === THEMES.DARK ? (
+      {theme.title === THEMES.DARK ? (
         <Moon aria-label="moon-icon" />
       ) : (
         <Sun aria-label="sun-icon" />
