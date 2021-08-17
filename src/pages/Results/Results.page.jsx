@@ -1,23 +1,18 @@
 import React, { useEffect } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
-import queryString from 'query-string';
-import { useYoutubeVideosByKeyword } from 'hooks/youtube/videos/useYoutubeVideosByKeyword';
 import VideoCard from 'components/VideoCard';
 import Loader from 'components/Loader';
+import { useYouTube } from 'providers/YouTube';
 import { ResultsWrapper } from './ResultsElements.styled';
 
 function Results() {
-  const location = useLocation();
-  const history = useHistory();
-  const { videos, isLoading, fetchVideosByKeyword } = useYoutubeVideosByKeyword();
+  const {
+    youtubeState: { videosFromSearchTerm, isLoading },
+    setYouTubeSearchTerm,
+  } = useYouTube();
 
   useEffect(() => {
-    const { searchText } = queryString.parse(location.search);
-    if (!searchText) {
-      history.push('/404');
-    }
-    fetchVideosByKeyword({ keyword: searchText });
-  }, [fetchVideosByKeyword, history, location.search]);
+    setYouTubeSearchTerm();
+  }, [setYouTubeSearchTerm]);
 
   if (isLoading) {
     return <Loader />;
@@ -25,8 +20,7 @@ function Results() {
   return (
     <ResultsWrapper>
       <h2>Results Page</h2>
-      {videos.map((ytVideo) => {
-        console.log(ytVideo.id);
+      {videosFromSearchTerm.map((ytVideo) => {
         return <VideoCard key={`${JSON.stringify(ytVideo.id)}`} video={ytVideo} />;
       })}
     </ResultsWrapper>

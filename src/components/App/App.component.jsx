@@ -14,6 +14,7 @@ import VideoDetails from 'pages/VideoDetails';
 import Results from 'pages/Results';
 import Loader from 'components/Loader';
 import { useToggleTheme } from 'providers/ToggleTheme';
+import YouTubeProvider from 'providers/YouTube/YouTube.provider';
 
 function App() {
   const { theme } = useToggleTheme();
@@ -29,29 +30,31 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <NavBar />
-          <Layout>
-            <Switch>
-              <Route exact path="/">
-                <HomePage />
-              </Route>
-              <Route exact path="/login">
-                <LoginPage />
-              </Route>
-              <Route path="/video/:id">
-                <VideoDetails />
-              </Route>
-              <Route exact path="/results">
-                <Results />
-              </Route>
-              <Route path="*">
-                <NotFound />
-              </Route>
-            </Switch>
-          </Layout>
-        </ThemeProvider>
+        <YouTubeProvider>
+          <ThemeProvider theme={theme}>
+            <GlobalStyle />
+            <NavBar />
+            <Layout>
+              <Switch>
+                <Route exact path="/">
+                  <HomePage />
+                </Route>
+                <Route exact path="/login">
+                  <LoginPage />
+                </Route>
+                <Route path="/video/:id">
+                  <VideoDetails />
+                </Route>
+                <Route exact path="/results">
+                  <Results />
+                </Route>
+                <Route path="*">
+                  <NotFound />
+                </Route>
+              </Switch>
+            </Layout>
+          </ThemeProvider>
+        </YouTubeProvider>
       </AuthProvider>
     </BrowserRouter>
   );
