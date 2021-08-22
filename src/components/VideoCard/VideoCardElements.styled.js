@@ -22,6 +22,7 @@ export const VideoCardPicture = styled.img`
 
 export const VideoCardText = styled.div`
   max-width: 40%;
+  flex-basis: 40%;
   overflow: hidden;
   color: var(--secondary-font-color);
 `;

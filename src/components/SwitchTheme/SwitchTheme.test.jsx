@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import SwitchTheme from './SwtchTheme.component';
+import SwitchTheme from './SwitchTheme.component';
 
 describe('<SwitchTheme> component', () => {
   test('should contains text with Dark Mode', () => {

@@ -30,8 +30,10 @@ export function useYoutubeVideosByKeyword() {
       });
       const newPayload = { videos: result.items, nextPageToken: result.nextPageToken };
       dispatch({ type: RESULTS_VIDEOS_SUCESS, payload: newPayload });
+      return { videos: result.items };
     } catch (error) {
       dispatch({ type: RESULTS_VIDEOS_FAIL });
+      return null;
     }
   }, []);
 
