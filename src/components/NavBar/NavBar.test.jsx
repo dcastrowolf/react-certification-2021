@@ -1,14 +1,17 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import ToggleThemeProvider from 'providers/ToggleTheme/ToggleTheme.provider';
 import NavBar from './NavBar.component';
 
 describe('<NavBar /> component', () => {
   beforeEach(() => {
     render(
-      <Router>
-        <NavBar />
-      </Router>
+      <ToggleThemeProvider>
+        <Router>
+          <NavBar />
+        </Router>
+      </ToggleThemeProvider>
     );
   });
 

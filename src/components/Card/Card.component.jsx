@@ -15,7 +15,7 @@ function Card({ title, description, imgSrc, channel, publishedDate, videoId }) {
       </CardImgWrapper>
       <CardTitle>{title}</CardTitle>
       <CardDescription>
-        {description}
+        {description.slice(0, 100)}...
         <span>#{channel}</span>
         <span>{publishedDate}</span>
       </CardDescription>
