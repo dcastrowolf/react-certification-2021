@@ -1,10 +1,41 @@
+import { useAuth } from 'providers/Auth';
 import React from 'react';
-import { AvatarIcon } from './AvatarElements.styled';
+import { useHistory } from 'react-router';
+import {
+  AvatarIcon,
+  AvatarIconLoggedIn,
+  AvatarLoggedInContainer,
+} from './AvatarElements.styled';
 
 function Avatar() {
+  const {
+    auth: {
+      userData: { name, avatarUrl },
+      authenticated,
+    },
+    logout,
+  } = useAuth();
+  const history = useHistory();
+
+  const handleLogin = () => {
+    history.push({ pathname: '/login' });
+  };
+
+  if (authenticated) {
+    return (
+      <>
+        <AvatarLoggedInContainer onClick={handleLogin}>
+          <AvatarIconLoggedIn src={avatarUrl} alt={`${name} | profile image`} />
+        </AvatarLoggedInContainer>
+      </>
+    );
+  }
+
   return (
     <>
-      <AvatarIcon />
+      <AvatarLoggedInContainer onClick={logout}>
+        <AvatarIcon />
+      </AvatarLoggedInContainer>
     </>
   );
 }

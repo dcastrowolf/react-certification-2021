@@ -1,0 +1,6 @@
+export const LOGIN_REQUEST = 'LOGIN_REQUEST';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const LOGOUT = 'LOGOUT';
+export const ADD_FAVORITE_VIDEO = 'ADD_FAVORITE_VIDEO';
+export const REMOVE_FAVORITE_VIDEO = 'REMOVE_FAVORITE_VIDEO';
