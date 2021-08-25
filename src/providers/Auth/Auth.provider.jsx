@@ -31,7 +31,6 @@ function AuthProvider({ children }) {
 
   useEffect(() => {
     const isAuthenticated = Boolean(userStorage.token);
-    console.log(isAuthenticated);
     if (isAuthenticated) {
       const loggedUser = JSON.parse(atob(userStorage.token));
       const payload = { userData: loggedUser, token: userStorage.token };
