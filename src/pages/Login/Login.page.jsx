@@ -1,37 +1,76 @@
 import React from 'react';
-import { useHistory } from 'react-router';
-
+import Logo from 'assets/img/YoutubeIcon.svg';
+import { NavLogo } from 'components/NavBar/NavBarElements.styled';
 import { useAuth } from 'providers/Auth';
+import { useHistory } from 'react-router';
+import { useLoginForm } from './hooks/useLoginForm';
+import {
+  CancelButton,
+  Error,
+  FormGroup,
+  InlineGroup,
+  LoginButton,
+  LoginContainer,
+  LoginForm,
+} from './LoginElements.styled';
 
 function LoginPage() {
-  const { login } = useAuth();
-  const history = useHistory();
+  const {
+    userCredentials: { username, password },
+    onLoginFormChange,
+    onLoginFormSubmit,
+  } = useLoginForm();
 
-  function authenticate(event) {
-    event.preventDefault();
-    login();
-    history.push('/secret');
-  }
+  const {
+    auth: { error, loading },
+  } = useAuth();
+
+  const history = useHistory();
+  const handleCancel = () => {
+    history.push({ pathname: '/' });
+  };
 
   return (
-    <section className="login">
-      <h1>Welcome back!</h1>
-      <form onSubmit={authenticate} className="login-form">
-        <div className="form-group">
+    <LoginContainer>
+      {error && <Error aria-label="Login error">{error}</Error>}
+      {loading && <h2>Loading...</h2>}
+      <LoginForm onSubmit={onLoginFormSubmit}>
+        <NavLogo to="/">
+          <img width={40} height={30} src={Logo} alt="WizelineTube logo" />
+          <p>WizelineTube</p>
+        </NavLogo>
+        <FormGroup>
           <label htmlFor="username">
             <strong>username </strong>
-            <input required type="text" id="username" />
+            <input
+              onChange={onLoginFormChange}
+              value={username}
+              required
+              type="text"
+              id="username"
+              name="username"
+            />
           </label>
-        </div>
-        <div className="form-group">
+        </FormGroup>
+        <FormGroup>
           <label htmlFor="password">
             <strong>password </strong>
-            <input required type="password" id="password" />
+            <input
+              onChange={onLoginFormChange}
+              value={password}
+              required
+              type="password"
+              id="password"
+              name="password"
+            />
           </label>
-        </div>
-        <button type="submit">login</button>
-      </form>
-    </section>
+        </FormGroup>
+        <InlineGroup>
+          <LoginButton type="submit">login</LoginButton>
+          <CancelButton onClick={handleCancel}>cancel</CancelButton>
+        </InlineGroup>
+      </LoginForm>
+    </LoginContainer>
   );
 }
 

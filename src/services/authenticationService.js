@@ -6,7 +6,7 @@ const mockUser = {
   favoriteVideos: [],
 };
 
-const authData = { token: null };
+const authData = { token: null, favoriteVideos: [] };
 const AUTH_KEY = 'AUTH_TOKEN';
 
 /**
@@ -17,10 +17,23 @@ const AUTH_KEY = 'AUTH_TOKEN';
 const credentialStorage = (storage = window.localStorage) => {
   return new Proxy(authData, {
     get(_, prop) {
-      const storedToken = storage.getItem(`${AUTH_KEY}.${prop}`);
-      return storedToken;
+      const storeKey =
+        prop === 'favoriteVideos' ? `${AUTH_KEY}.token` : `${AUTH_KEY}.${prop}`;
+      const storeProperty = storage.getItem(storeKey);
+      if (prop === 'favoriteVideos') {
+        const data = storeProperty ? JSON.parse(atob(storeProperty)).favoriteVideos : [];
+        return data;
+      }
+      return storeProperty;
     },
     set(_, prop, value) {
+      if (prop === 'favoriteVideos') {
+        return false;
+      }
+      if (!value) {
+        storage.removeItem(`${AUTH_KEY}.${prop}`);
+        return true;
+      }
       storage.setItem(`${AUTH_KEY}.${prop}`, btoa(JSON.stringify(value)));
       return true;
     },

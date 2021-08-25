@@ -15,6 +15,8 @@ import Results from 'pages/Results';
 import Loader from 'components/Loader';
 import { useToggleTheme } from 'providers/ToggleTheme';
 import YouTubeProvider from 'providers/YouTube/YouTube.provider';
+import Private from 'components/Private/Private.component';
+import FavoriteVideos from 'pages/FavoriteVideos';
 
 function App() {
   const { theme } = useToggleTheme();
@@ -48,6 +50,9 @@ function App() {
                 <Route exact path="/results">
                   <Results />
                 </Route>
+                <Private exact path="/favorites">
+                  <FavoriteVideos />
+                </Private>
                 <Route path="*">
                   <NotFound />
                 </Route>

@@ -1,3 +1,4 @@
+import ActionButtons from 'components/ActionButtons';
 import Loader from 'components/Loader';
 import VideoCard from 'components/VideoCard';
 import { useSingleYoutubeVideo } from 'hooks/youtube/video/useSingleYoutubeVideo';
@@ -12,7 +13,7 @@ import {
 
 function VideoDetails() {
   const { id } = useParams();
-  const { relatedVideos, isLoading, getRelatedVideos } = useSingleYoutubeVideo();
+  const { video, relatedVideos, isLoading, getRelatedVideos } = useSingleYoutubeVideo();
 
   useEffect(() => {
     if (id) {
@@ -32,6 +33,7 @@ function VideoDetails() {
           frameBorder="0"
           title="Embedded youtube Video"
         />
+        <ActionButtons videoId={id} videoTitle={video?.snippet?.title} />
       </VideoContent>
       <RelatedVideos>
         {relatedVideos.map((ytVideo) => {

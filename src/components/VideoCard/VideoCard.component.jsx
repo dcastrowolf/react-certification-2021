@@ -10,7 +10,10 @@ function VideoCard({ video }) {
   return (
     <VideoCardContainer to={`/video/${video.id.videoId}`}>
       <VideoCardPicture src={videoData.thumbnails.medium.url} atl={videoData.title} />
-      <VideoCardText>{videoData.description.slice(0, 150)}...</VideoCardText>
+      <VideoCardText>
+        <strong>{videoData.title}</strong>
+        {videoData.description.slice(0, 100)}...
+      </VideoCardText>
     </VideoCardContainer>
   );
 }

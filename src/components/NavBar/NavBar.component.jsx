@@ -4,9 +4,14 @@ import SwitchTheme from 'components/SwitchTheme';
 import IconsContainer from 'components/UI/IconsContainer';
 import React from 'react';
 import Logo from 'assets/img/YoutubeIcon.svg';
+import { useRouteMatch } from 'react-router';
 import { Nav, NavLogo } from './NavBarElements.styled';
 
 export default function NavBar() {
+  const match = useRouteMatch('/login');
+  if (match && match.isExact) {
+    return null;
+  }
   return (
     <Nav>
       <NavLogo to="/">

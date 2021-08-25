@@ -24,7 +24,7 @@ function Avatar() {
   if (authenticated) {
     return (
       <>
-        <AvatarLoggedInContainer onClick={handleLogin}>
+        <AvatarLoggedInContainer onClick={logout}>
           <AvatarIconLoggedIn src={avatarUrl} alt={`${name} | profile image`} />
         </AvatarLoggedInContainer>
       </>
@@ -33,7 +33,7 @@ function Avatar() {
 
   return (
     <>
-      <AvatarLoggedInContainer onClick={logout}>
+      <AvatarLoggedInContainer onClick={handleLogin}>
         <AvatarIcon />
       </AvatarLoggedInContainer>
     </>

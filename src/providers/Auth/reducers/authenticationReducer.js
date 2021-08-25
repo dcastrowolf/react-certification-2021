@@ -1,3 +1,4 @@
+import { userStorage } from 'services/authenticationService';
 import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
@@ -9,7 +10,7 @@ import {
 
 export const authenticationState = {
   token: null,
-  authenticated: false,
+  authenticated: !!userStorage.token,
   loading: false,
   userData: {
     id: null,
@@ -30,22 +31,22 @@ export function authenticationReducer(state, action) {
         ...state,
         userData: payload.userData,
         token: payload.token,
-        authenticated: !!payload.token,
+        authenticated: !!userStorage.token,
         loading: false,
       };
     case LOGIN_FAIL:
-      return { ...state, error: payload };
+      return { ...state, error: payload, loading: false };
     case ADD_FAVORITE_VIDEO:
       return {
         ...state,
         userData: {
           ...state.userData,
-          favoriteVideos: [...state.userData.favoriteVideos, payload.video],
+          favoriteVideos: [...state.userData.favoriteVideos, payload.videoId],
         },
       };
     case REMOVE_FAVORITE_VIDEO: {
       const favoriteVideos = [...state.userData.favoriteVideos].filter(
-        (v) => v.id !== payload.video.id
+        (v) => v !== payload.videoId
       );
       return {
         ...state,
@@ -56,7 +57,7 @@ export function authenticationReducer(state, action) {
       };
     }
     case LOGOUT:
-      return { ...authenticationState };
+      return { ...authenticationState, authenticated: false };
     default:
       return state;
   }

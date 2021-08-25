@@ -31,6 +31,7 @@ function AuthProvider({ children }) {
 
   useEffect(() => {
     const isAuthenticated = Boolean(userStorage.token);
+    console.log(isAuthenticated);
     if (isAuthenticated) {
       const loggedUser = JSON.parse(atob(userStorage.token));
       const payload = { userData: loggedUser, token: userStorage.token };
@@ -38,20 +39,27 @@ function AuthProvider({ children }) {
     }
   }, []);
 
+  useEffect(() => {
+    const { userData } = auth;
+    if (userData.id) {
+      userStorage.token = userData;
+    }
+  }, [auth]);
+
   const login = useCallback(
     ({ username, password }) => {
       dispatch({ type: LOGIN_REQUEST });
       authenticationService
         .login({ username, password })
-        .then((response) => response.json())
-        .then((data) => {
-          dispatch({ type: LOGIN_SUCCESS, payload: data });
+        .then((response) => {
+          const payload = { userData: response, token: userStorage.token };
+          dispatch({ type: LOGIN_SUCCESS, payload });
           history.push({
-            pathname: '/',
+            pathname: '/favorites',
           });
         })
         .catch((error) => {
-          dispatch({ type: LOGIN_FAIL, payload: error.Message });
+          dispatch({ type: LOGIN_FAIL, payload: error.message });
         });
     },
     [history]
@@ -59,28 +67,19 @@ function AuthProvider({ children }) {
 
   const logout = useCallback(() => {
     dispatch({ type: LOGOUT });
+    userStorage.token = null;
     history.push({
       pathname: '/',
     });
   }, [history]);
 
-  const addFavoriteVideo = useCallback(
-    (video) => {
-      dispatch({ type: ADD_FAVORITE_VIDEO, payload: { video } });
-      const { userData } = auth;
-      userStorage.token = userData;
-    },
-    [auth]
-  );
+  const addFavoriteVideo = useCallback((videoId) => {
+    dispatch({ type: ADD_FAVORITE_VIDEO, payload: { videoId } });
+  }, []);
 
-  const removeFavoriteVideo = useCallback(
-    (video) => {
-      dispatch({ type: REMOVE_FAVORITE_VIDEO, payload: { video } });
-      const { userData } = auth;
-      userStorage.token = userData;
-    },
-    [auth]
-  );
+  const removeFavoriteVideo = useCallback((videoId) => {
+    dispatch({ type: REMOVE_FAVORITE_VIDEO, payload: { videoId } });
+  }, []);
 
   return (
     <AuthContext.Provider
