@@ -2,6 +2,7 @@ import React, { useCallback, useContext, useReducer } from 'react';
 import { useHistory, useLocation } from 'react-router';
 import queryString from 'query-string';
 import { useYoutubeVideosByKeyword } from 'hooks/youtube/videos/useYoutubeVideosByKeyword';
+import { userStorage } from 'services/authenticationService';
 import {
   defaultState,
   LAST_VIDEO_WATCHED,
@@ -49,12 +50,34 @@ function YouTubeProvider({ children }) {
     dispatch({ type: LAST_VIDEO_WATCHED, payload });
   }, []);
 
+  const getFavoriteVideos = useCallback(async () => {
+    const videos = userStorage.favoriteVideos;
+    if (videos.length) {
+      try {
+        const {
+          gapi: {
+            client: { youtube },
+          },
+        } = window;
+        const { result } = await youtube.videos.list({
+          part: ['id,snippet'],
+          id: videos.join(','),
+        });
+        return result.items;
+      } catch (error) {
+        return [];
+      }
+    }
+    return [];
+  }, []);
+
   return (
     <YoutubeContext.Provider
       value={{
         youtubeState,
         setYouTubeSearchTerm,
         setLastVideoWatched,
+        getFavoriteVideos,
       }}
     >
       {children}

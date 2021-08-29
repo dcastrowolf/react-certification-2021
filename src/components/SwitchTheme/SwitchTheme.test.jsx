@@ -1,28 +1,24 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
+import ToggleThemeProvider from 'providers/ToggleTheme/ToggleTheme.provider';
 import SwitchTheme from './SwitchTheme.component';
 
 describe('<SwitchTheme> component', () => {
+  beforeEach(() => {
+    render(
+      <ToggleThemeProvider>
+        <SwitchTheme />
+      </ToggleThemeProvider>
+    );
+  });
   test('should contains text with Dark Mode', () => {
-    const component = render(<SwitchTheme theme="dark" />);
-    component.getByText(/dark mode/i);
+    screen.getByText(/dark mode/i);
   });
 
   test('clicking the <SwitchTheme> calls event handler once', () => {
-    const mockToggleTheme = jest.fn();
-    const component = render(<SwitchTheme theme="dark" toggleTheme={mockToggleTheme} />);
-    const clickable = component.getByText('Dark Mode');
+    const clickable = screen.getByText('Dark Mode');
+    screen.getByLabelText(/moon-icon/i);
     fireEvent.click(clickable);
-    expect(mockToggleTheme).toHaveBeenCalledTimes(1);
-  });
-
-  test('renders Moon when theme is dark', () => {
-    const component = render(<SwitchTheme theme="dark" />);
-    component.getByLabelText('moon-icon');
-  });
-
-  test('renders Sun when theme is light', () => {
-    const component = render(<SwitchTheme theme="light" />);
-    component.getByLabelText('sun-icon');
+    expect(screen.getByLabelText(/sun-icon/i)).toBeInTheDocument();
   });
 });

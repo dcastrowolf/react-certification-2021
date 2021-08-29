@@ -1,7 +1,19 @@
-import React, { useState, useEffect, useContext, useCallback } from 'react';
+import React, { useEffect, useContext, useCallback, useReducer } from 'react';
+import { useHistory } from 'react-router';
 
-import { AUTH_STORAGE_KEY } from 'utils/constants';
-import { storage } from 'utils/storage';
+import { authenticationService, userStorage } from 'services/authenticationService';
+import {
+  ADD_FAVORITE_VIDEO,
+  LOGIN_FAIL,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGOUT,
+  REMOVE_FAVORITE_VIDEO,
+} from './reducers/actionTypes';
+import {
+  authenticationReducer,
+  authenticationState,
+} from './reducers/authenticationReducer';
 
 const AuthContext = React.createContext(null);
 
@@ -14,27 +26,64 @@ function useAuth() {
 }
 
 function AuthProvider({ children }) {
-  const [authenticated, setAuthenticated] = useState(false);
+  const [auth, dispatch] = useReducer(authenticationReducer, authenticationState);
+  const history = useHistory();
 
   useEffect(() => {
-    const lastAuthState = storage.get(AUTH_STORAGE_KEY);
-    const isAuthenticated = Boolean(lastAuthState);
-
-    setAuthenticated(isAuthenticated);
+    const isAuthenticated = Boolean(userStorage.token);
+    if (isAuthenticated) {
+      const loggedUser = JSON.parse(atob(userStorage.token));
+      const payload = { userData: loggedUser, token: userStorage.token };
+      dispatch({ type: LOGIN_SUCCESS, payload });
+    }
   }, []);
 
-  const login = useCallback(() => {
-    setAuthenticated(true);
-    storage.set(AUTH_STORAGE_KEY, true);
-  }, []);
+  useEffect(() => {
+    const { userData } = auth;
+    if (userData.id) {
+      userStorage.token = userData;
+    }
+  }, [auth]);
+
+  const login = useCallback(
+    ({ username, password }) => {
+      dispatch({ type: LOGIN_REQUEST });
+      authenticationService
+        .login({ username, password })
+        .then((response) => {
+          const payload = { userData: response, token: userStorage.token };
+          dispatch({ type: LOGIN_SUCCESS, payload });
+          history.push({
+            pathname: '/favorites',
+          });
+        })
+        .catch((error) => {
+          dispatch({ type: LOGIN_FAIL, payload: error.message });
+        });
+    },
+    [history]
+  );
 
   const logout = useCallback(() => {
-    setAuthenticated(false);
-    storage.set(AUTH_STORAGE_KEY, false);
+    dispatch({ type: LOGOUT });
+    userStorage.token = null;
+    history.push({
+      pathname: '/',
+    });
+  }, [history]);
+
+  const addFavoriteVideo = useCallback((videoId) => {
+    dispatch({ type: ADD_FAVORITE_VIDEO, payload: { videoId } });
+  }, []);
+
+  const removeFavoriteVideo = useCallback((videoId) => {
+    dispatch({ type: REMOVE_FAVORITE_VIDEO, payload: { videoId } });
   }, []);
 
   return (
-    <AuthContext.Provider value={{ login, logout, authenticated }}>
+    <AuthContext.Provider
+      value={{ login, logout, addFavoriteVideo, removeFavoriteVideo, auth }}
+    >
       {children}
     </AuthContext.Provider>
   );

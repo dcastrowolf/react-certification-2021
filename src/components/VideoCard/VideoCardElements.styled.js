@@ -25,4 +25,9 @@ export const VideoCardText = styled.div`
   flex-basis: 40%;
   overflow: hidden;
   color: var(--secondary-font-color);
+  strong {
+    color: var(--main-font-color);
+    display: block;
+    border-bottom: 1px solid var(--secondary-color);
+  }
 `;

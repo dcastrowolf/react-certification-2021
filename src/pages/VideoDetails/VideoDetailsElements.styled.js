@@ -16,6 +16,8 @@ export const VideoContent = styled.div`
   max-width: 70%;
   flex-grow: 1;
   flex-shrink: 0.6;
+  display: flex;
+  flex-direction: column;
 
   @media screen and (max-width: 600px) {
     flex: 1;

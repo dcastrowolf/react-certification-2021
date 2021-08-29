@@ -4,9 +4,19 @@ import SwitchTheme from 'components/SwitchTheme';
 import IconsContainer from 'components/UI/IconsContainer';
 import React from 'react';
 import Logo from 'assets/img/YoutubeIcon.svg';
-import { Nav, NavLogo } from './NavBarElements.styled';
+import { useRouteMatch } from 'react-router';
+import { useAuth } from 'providers/Auth';
+import { FavoritesLink, Nav, NavLogo } from './NavBarElements.styled';
 
 export default function NavBar() {
+  const match = useRouteMatch('/login');
+  const {
+    auth: { authenticated },
+  } = useAuth();
+
+  if (match && match.isExact) {
+    return null;
+  }
   return (
     <Nav>
       <NavLogo to="/">
@@ -16,6 +26,7 @@ export default function NavBar() {
       <SearchBox />
       <IconsContainer>
         <SwitchTheme />
+        {authenticated && <FavoritesLink to="/favorites">Favorites</FavoritesLink>}
         <Avatar />
       </IconsContainer>
     </Nav>

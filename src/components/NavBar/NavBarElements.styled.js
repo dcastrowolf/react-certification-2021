@@ -28,3 +28,11 @@ export const NavLogo = styled(Link)`
     }
   }
 `;
+
+export const FavoritesLink = styled(Link)`
+  color: var(--main-font-color);
+  text-decoration: none;
+  &:hover {
+    color: #ff5349;
+  }
+`;
