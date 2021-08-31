@@ -10,7 +10,6 @@ function FavoriteVideos() {
 
   useEffect(() => {
     getFavoriteVideos().then((videos) => {
-      console.log('my videos', videos);
       setFavorites(videos);
     });
   }, [getFavoriteVideos]);

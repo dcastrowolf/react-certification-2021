@@ -1,10 +1,4 @@
-const mockUser = {
-  id: 'xyz123',
-  name: 'wizeline',
-  avatarUrl:
-    'https://media.glassdoor.com/sqll/868055/wizeline-squarelogo-1473976610815.png',
-  favoriteVideos: [],
-};
+import { mockUser } from 'mocks/user-mock';
 
 const authData = { token: null, favoriteVideos: [] };
 const AUTH_KEY = 'AUTH_TOKEN';

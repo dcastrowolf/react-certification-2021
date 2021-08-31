@@ -33,7 +33,7 @@ function VideoDetails() {
           frameBorder="0"
           title="Embedded youtube Video"
         />
-        <ActionButtons videoId={id} videoTitle={video?.snippet?.title} />
+        <ActionButtons videoId={id} video={video} />
       </VideoContent>
       <RelatedVideos>
         {relatedVideos.map((ytVideo) => {
