@@ -3,13 +3,13 @@ import React from 'react';
 import { ActionButtonsContainer } from './ActionButtonsElements.styled';
 import { AddFavorite } from './AddFavorite/AddFavorite.component';
 
-function ActionButtons({ videoId, videoTitle }) {
+function ActionButtons({ videoId, video }) {
   const {
     auth: { authenticated },
   } = useAuth();
   return (
     <ActionButtonsContainer>
-      <h3>{videoTitle}</h3>
+      <h3>{video?.snippet?.title}</h3>
       {authenticated && <AddFavorite videoId={videoId} />}
     </ActionButtonsContainer>
   );

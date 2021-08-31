@@ -10,15 +10,16 @@ function CardList({ videos = [] }) {
       ) : (
         videos.map((ytVideo) => {
           const { snippet, id } = ytVideo;
+          const videoId = typeof id === 'object' ? id.videoId : id;
           return (
             <Card
-              key={id}
+              key={videoId}
               title={snippet.title}
               description={snippet.description}
               imgSrc={snippet.thumbnails.medium.url}
               channel={snippet.channelTitle}
               publishedDate={snippet.publishedAt}
-              videoId={id}
+              videoId={videoId}
             />
           );
         })

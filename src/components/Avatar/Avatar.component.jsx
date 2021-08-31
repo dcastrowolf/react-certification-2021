@@ -34,7 +34,7 @@ function Avatar() {
   return (
     <>
       <AvatarLoggedInContainer onClick={handleLogin}>
-        <AvatarIcon />
+        <AvatarIcon aria-label="profile icon" />
       </AvatarLoggedInContainer>
     </>
   );

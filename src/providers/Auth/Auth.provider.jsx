@@ -25,7 +25,7 @@ function useAuth() {
   return context;
 }
 
-function AuthProvider({ children }) {
+function AuthProvider({ children, ...rest }) {
   const [auth, dispatch] = useReducer(authenticationReducer, authenticationState);
   const history = useHistory();
 
@@ -83,6 +83,7 @@ function AuthProvider({ children }) {
   return (
     <AuthContext.Provider
       value={{ login, logout, addFavoriteVideo, removeFavoriteVideo, auth }}
+      {...rest}
     >
       {children}
     </AuthContext.Provider>

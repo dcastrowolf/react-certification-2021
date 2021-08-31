@@ -7,8 +7,9 @@ import {
 
 function VideoCard({ video }) {
   const { snippet: videoData } = video;
+  const id = typeof video.id === 'object' ? video.id.videoId : video.id;
   return (
-    <VideoCardContainer to={`/video/${video.id.videoId}`}>
+    <VideoCardContainer to={`/video/${id}`}>
       <VideoCardPicture src={videoData.thumbnails.medium.url} atl={videoData.title} />
       <VideoCardText>
         <strong>{videoData.title}</strong>
